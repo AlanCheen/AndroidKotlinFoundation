@@ -1,4 +1,4 @@
-package me.yifeiyuan.foundation
+package me.yifeiyuan.foundation.dev
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
