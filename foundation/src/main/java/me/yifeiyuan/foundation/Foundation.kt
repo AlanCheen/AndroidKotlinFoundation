@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import java.io.Closeable
 
 /**
  * Created by 程序亦非猿 on 2020/12/7.
@@ -90,5 +91,15 @@ fun ImageView.recycle() {
         }
     } catch (e: Exception) {
         e.printStackTrace()
+    }
+}
+
+fun Closeable?.closeQuietly(){
+    this?.let {
+        try {
+            it.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
