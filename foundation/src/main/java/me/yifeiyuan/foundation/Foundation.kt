@@ -1,10 +1,12 @@
 package me.yifeiyuan.foundation
 
 import android.content.Context
+import android.graphics.drawable.BitmapDrawable
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 
@@ -76,4 +78,17 @@ inline fun View.doOnClick(crossinline action: (view: View) -> Unit) {
 
 fun ViewGroup.inflate(resId: Int, attachToRoot: Boolean = true): View {
     return LayoutInflater.from(context).inflate(resId, this, attachToRoot)
+}
+
+fun ImageView.recycle() {
+    try {
+        (drawable as BitmapDrawable).let {
+            setImageResource(0)
+            setImageDrawable(null)
+            it.bitmap.recycle()
+            it.callback = null
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
 }
